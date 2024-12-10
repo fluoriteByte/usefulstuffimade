@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/bin/env bash
 #Script by fluoriteByte, may you find a use for this cursed spell
 
 dir=
