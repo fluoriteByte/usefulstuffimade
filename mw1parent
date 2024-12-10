@@ -1,0 +1,29 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#Script by fluoriteByte, may you find a use for this cursed spell
+
+dir=
+
+if [ -z "$1" ] || ! [ -d "$1" ]; then
+    echo empty, choosing pwd
+    dir="$PWD"
+    echo "$dir"
+else
+    echo full
+    dir="$1"
+    echo "$dir"
+fi
+
+#echo "folders present:"; find "$dir" -maxdepth 1 -type d
+
+cd "$dir" || exit
+for subdir in *; do
+    if [ -d "$subdir" ]; then
+        count=$(find "$subdir" -maxdepth 1 -type d | wc -l)
+        ((count-=1))
+        if ! [ "$count" -gt 1 ]; then
+            echo "$subdir"": ""$count"
+            echo 1 child only folder
+            mv "$subdir"/*/* "$subdir"
+        fi
+    fi
+done
